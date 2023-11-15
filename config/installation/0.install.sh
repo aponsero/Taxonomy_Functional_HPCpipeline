@@ -1,0 +1,29 @@
+
+### Kraken-Braken installation
+# creating tykky container for Kraken and braken
+TYKKY_DIR="" # folder path for the installation of the containers
+
+module purge
+module load tykky
+mkdir Kraken_Braken
+conda-containerize new --prefix Kraken_Braken kraken_braken.yml
+
+## HumGut database download
+# direct download from https://arken.nmbu.no/~larssn/humgut/
+
+### Humann3 installation
+# Humann3 and Metaphlan are available on Puhti modules
+# https://docs.csc.fi/apps/metaphlan/
+# https://docs.csc.fi/apps/humann/
+
+## Database download
+DB_DIR="../../databases"
+mkdir -p $DB_DIR/Humann3
+module load humann
+humann_databases --download chocophlan full $DB_DIR/Humann3 
+humann_databases --download uniref uniref90_diamond $DB_DIR/Humann3
+
+module load metaphlan
+mkdir Metaphlan
+metaphlan --install --bowtie2db $DB_DIR/Metaphlan
+
