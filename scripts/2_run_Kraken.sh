@@ -22,7 +22,7 @@ export PATH="$TYKKY_KRAKEN:$PATH"
 echo "job started"; hostname; date
 
 # run kraken2
-FASTQC="/scratch/project_2004512/temp/Ching_FMT/qc_host"
+FASTQC="$OUT_DIR/qc_host"
 KRA_OUT="$OUT_DIR/Kraken"
 
 if [[ ! -d "$KRA_OUT" ]]; then
